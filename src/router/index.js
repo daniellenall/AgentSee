@@ -4,7 +4,7 @@ import Home from '../views/Home.vue';
 import Login from '../views/Login.vue';
 import Signup from '../views/Signup.vue';
 import AgentList from '../views/AgentList.vue';
-import {fb} from '../firebase';
+import { fb } from '../firebase';
 
 Vue.use(VueRouter)
 
@@ -49,7 +49,7 @@ router.beforeEach((to, from, next) => {
   const currentUser = fb.auth().currentUser
 
   if (requiresAuth && !currentUser) {
-    next('/login');
+    next({ path: '/login', query: { redirect: to.fullPath } });
   } else if (requiresAuth && currentUser) {
     next();
   } else {
