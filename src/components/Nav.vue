@@ -14,25 +14,28 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
+        <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
             <router-link class="nav-link" to="/">Home</router-link>
           </li>
-
           <li class="nav-item">
             <router-link class="nav-link" to="/about">About</router-link>
           </li>
           <li class="nav-item">
             <router-link class="nav-link" to="/agents">Agents</router-link>
           </li>
+        </ul>
+
+        <ul class="navbar-nav navbar-right">
           <li class="nav-item" v-if="!auth">
             <router-link class="nav-link" to="/login">Login</router-link>
           </li>
           <li class="nav-item" v-if="auth">
-            {{user.email}}<a class="nav-link" href="#" @click="logout()">Logout</a>
+            <p class="nav-link">Hi, {{user.email}}!</p>
           </li>
-
- 
+          <li class="nav-item" v-if="auth">
+            <a class="nav-link" href="#" @click="logout()">Logout</a>
+          </li>
         </ul>
       </div>
     </nav>
@@ -46,18 +49,17 @@ import { fb } from "../firebase";
 export default {
   name: "Nav",
   props: {
-    title: String,
-    
+    title: String
   },
   data() {
     return {
-      user: '',
+      user: "",
       auth: false
-    }
+    };
   },
   created() {
     // Check if user is logged in and set auth variable
-    fb.auth().onAuthStateChanged((user) => {
+    fb.auth().onAuthStateChanged(user => {
       if (user) {
         this.user = user;
         this.auth = true;
