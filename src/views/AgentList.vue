@@ -1,93 +1,99 @@
 <template>
   <div class="agent-list">
-    <div class="container-fluid">
-      <div class="row">
-        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
-          <div class="sidebar-sticky">
-            <ul class="nav flex-column">
-              <li class="nav-item">
-                <a class="nav-link active" href="#">
-                  <span data-feather="home"></span>
-                  Dashboard <span class="sr-only">(current)</span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span data-feather="file"></span>
-                  Orders
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span data-feather="shopping-cart"></span>
-                  Products
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span data-feather="users"></span>
-                  Customers
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span data-feather="bar-chart-2"></span>
-                  Reports
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span data-feather="layers"></span>
-                  Integrations
-                </a>
-              </li>
-            </ul>
-
-            <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-              <span class="text-center">Saved reports</span>
-              <a class="d-flex align-items-center text-muted" href="#">
-                <span data-feather="plus-circle"></span>
-              </a>
-            </h6>
-            <ul class="nav flex-column mb-2">
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span data-feather="file-text"></span>
-                  Current month
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span data-feather="file-text"></span>
-                  Last quarter
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span data-feather="file-text"></span>
-                  Social engagement
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span data-feather="file-text"></span>
-                  Year-end sale
-                </a>
-              </li>
-            </ul>
-          </div>
-          </nav>
-  </div>
-  </div>
+    <div class="sidebar">
+      <h3>Add a new agent</h3>
+      <form v-on:submit.prevent="newAgent()">
+        <input type="text" v-model="agent.name" required />
+        <input type="text" v-model="agent.location" required />
+        <button>New</button>
+      </form>
+    </div>
+    <div class="main">
+      <h3>List</h3>
+      <div v-for="agent in agents" :key="agent.id">
+        <p>{{agent.name}} | {{agent.location}}</p>
+       <!-- */ <a href="#" class="btn btn-info" @click="updateAgent(agent.id)">Update</a>-->
+        <a href="#" class="btn btn-warning" @click="deleteAgent(agent)">Delete</a>
+      </div>
+    </div>
   </div>
 </template>
 
+
 <script>
 // @ is an alias to /src
+import { fb, db } from "@/firebase";
 
 export default {
-  name: 'AgentList',
-  components: {
+  name: "AgentList",
+  data() {
+    return {
+      agents: [],
+      agent: {
+        name: "",
+        location: ""
+      }
+    };
+  },
+  firestore(){
+    // Get agents from collection
+    return {
+      agents: db.collection('agents'),
+    }
+  },
+
+  methods: {
+  
+    //**************************************************
+    // Add new agent to database
+    //**************************************************
+    newAgent() {
+      db.collection("agents")
+        .add(this.agent)
+        .then(docRef => {
+          console.log("written" + this.agent.name);
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    },
+    //**************************************************
+    // Update agent
+    //**************************************************
+    updateAgent() {
+
+    },
+    //**************************************************
+    // Delete from agents database
+    //**************************************************
+    deleteAgent(doc) {
+      this.$firestore.agents.doc(doc.id).delete()
+
+    }
+  },
+  beforeMount() {
   }
-}
+};
 </script>
+
+
+<style scoped>
+.agent-list {
+  display: flex;
+}
+
+.sidebar {
+  overflow: hidden;
+  height: 100vh;
+  min-width: 200px;
+  max-width: 20%;
+  text-align: center;
+  padding: 15px 25px;
+  margin-right: 10px;
+}
+
+.main {
+  flex: 1;
+  padding: 0px 35px;
+}
+</style>
