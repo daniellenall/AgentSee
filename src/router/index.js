@@ -43,19 +43,19 @@ const routes = [
 const router = new VueRouter({
   routes
 })
-//
-// router.beforeEach((to, from, next) => {
-//   const requiresAuth = to.matched.some(x => x.meta.requiresAuth);
-//   const currentUser = fb.auth().currentUser
 
-//   if (requiresAuth && !currentUser) {
-//     next({ path: '/login', query: { redirect: to.fullPath } });
-//   } else if (requiresAuth && currentUser) {
-//     next();
-//   } else {
-//     next();
-//   }
-// }
-// );
+router.beforeEach((to, from, next) => {
+  const requiresAuth = to.matched.some(x => x.meta.requiresAuth);
+  const currentUser = fb.auth().currentUser
+
+  if (requiresAuth && !currentUser) {
+    next({ path: '/login', query: { redirect: to.fullPath } });
+  } else if (requiresAuth && currentUser) {
+    next();
+  } else {
+    next();
+  }
+}
+);
 
 export default router
