@@ -10,7 +10,6 @@
         class="form-control"
         placeholder="Email address"
         required
-        autofocus
       />
       <label for="inputPassword" class="sr-only">Password</label>
       <input
@@ -27,27 +26,29 @@
         </label>
       </div>
       <button class="btn btn-lg btn-primary btn-block" @click="login" type="submit">Sign in</button>
-
+      <p>
+        New here?
+        <router-link class="nav-link" to="/signup">Signup</router-link>
+      </p>
       {{user.email}}
-
     </form>
   </div>
 </template>
 
 <script>
-import {fb} from '../firebase.js';
+import { fb } from "../firebase.js";
 
 export default {
   name: "Login",
   data() {
     return {
-      email: '',
-      password: '',
-      user: ''
-    }
+      email: "",
+      password: "",
+      user: ""
+    };
   },
   created() {
-    fb.auth().onAuthStateChanged((user) => {
+    fb.auth().onAuthStateChanged(user => {
       if (user) {
         this.user = user;
       } else {
@@ -57,10 +58,11 @@ export default {
   },
   methods: {
     login: function() {
-      fb.auth().signInWithEmailAndPassword(this.email, this.password);
+      fb.auth()
+        .signInWithEmailAndPassword(this.email, this.password)
+        .then(this.$router.replace("/"));
     }
   }
-  
 };
 </script>
 
