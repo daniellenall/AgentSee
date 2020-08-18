@@ -20,14 +20,13 @@
               />
             </div>
             <div class="form-group">
-              <button class="btn btn-primary">Create</button>
+              <button class="btn btn-info">Create</button>
             </div>
           </form>
         </div>
       </div>
     </div>
     <div class="main">
-      <h3>List</h3>
       <div v-for="agent in agents" :key="agent.id">
 
 
@@ -47,7 +46,7 @@
         <p class="card-text">{{agent.description}}</p>
         <p class="card-text"><small class="text-muted"> {{agent.location}}</small></p>
         
-        <router-link :to="{name: 'Edit', params: { id: agent.id }}" class="btn btn-primary mr-2">Edit</router-link>
+        <router-link :to="{name: 'Edit', params: { id: agent.id }}" class="btn btn-info mr-2">Edit</router-link>
          <button href="#" class="btn btn-warning mr-2" @click="deleteAgent(agent)">Delete</button>
       </div>
     </div>
