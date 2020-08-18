@@ -50,7 +50,7 @@
               </div>
               <div class="col-md-8">
                 <div class="card-body">
-                  <h5 class="card-title">{{agent.name}}</h5>
+                  <h5 class="card-title">{{agent.name}}  ({{agent.company}})</h5>
                   <p class="card-text">{{agent.description}}</p>
                   <p class="card-text">
                     <small class="text-muted">{{agent.location}}</small>
