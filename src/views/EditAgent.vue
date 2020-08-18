@@ -27,7 +27,7 @@
           </div>
 
           <div class="form-group">
-            <button class="btn btn-primary btn-block">Add Agent</button>
+            <button class="btn btn-primary btn-block">Update Agent</button>
           </div>
 
           <div v-if="msg">{{msg}}</div>
