@@ -1,20 +1,19 @@
 <template>
-  <div id="footer">
-    <p class="mt-5 mb-3 text-muted">&copy; {{ new Date().getFullYear() }}</p>
+  <div id="footer" class="bg-info">
+    <p class="text-white">&copy; {{ new Date().getFullYear() }}</p>
   </div>
 </template>
 
 
 <script>
 export default {
-  name: "Footer",
-
+  name: "Footer"
 };
 </script>
 
 <style scoped>
-.footer {
-    position: absolute;
-    bottom: 0;
+#footer {
+  padding: 22px;
+  text-align: center;
 }
 </style>
