@@ -1,6 +1,6 @@
 <template>
   <div id="nav">
-    <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-info">
+    <nav class="navbar navbar-expand-md fixed-top navbar-light bg-info">
       <a class="navbar-brand" href="#">{{ title }}</a>
       <button
         class="navbar-toggler"
@@ -18,9 +18,7 @@
           <li class="nav-item active">
             <router-link class="nav-link" to="/">Home</router-link>
           </li>
-          <li class="nav-item">
-            <router-link class="nav-link" to="/about">About</router-link>
-          </li>
+          
           <li class="nav-item">
             <router-link class="nav-link" to="/agents">Agents</router-link>
           </li>
@@ -86,3 +84,13 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+#nav {
+  margin-bottom: 35px;
+}
+.navbar {
+  width: 100%;
+  white-space: no-wrap;
+}
+</style>
