@@ -1,19 +1,23 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    Search our database of Estate Agents
-    <div class="p-3 mb-2 bg-gradient-primary text-white">.bg-gradient-primary</div>
-
+  <div class="landing">
+    <div class="jumbotron jumbotron-fluid">
+      <div class="container">
+        <h1 class="display-4">{{ msg }}</h1>
+        <p
+          class="lead"
+        >This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'HelloWorld',
+  name: "Landing",
   props: {
     msg: String
   }
-}
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

@@ -1,18 +1,17 @@
 <template>
   <div class="home main">
-    <HelloWorld msg="Welcome to AgentSee"/>
-    <button class="btn btn-primary">Click me</button>
+    <Landing msg="Welcome to AgentSee"/>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import Landing from '@/components/Landing.vue'
 
 export default {
   name: 'Home',
   components: {
-    HelloWorld
+    Landing
   }
 }
 </script>

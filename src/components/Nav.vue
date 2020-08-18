@@ -87,7 +87,7 @@ export default {
 
 <style scoped>
 #nav {
-  margin-bottom: 35px;
+  margin-bottom: 12px;
 }
 .navbar {
   width: 100%;
